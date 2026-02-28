@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="@color/bg_main">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/congratulations"
+        android:textSize="44sp"
+        android:textStyle="bold"
+        android:textColor="@color/title_text"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textColor="@color/score_text"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/tv_high_score_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_high_score"
+        android:textSize="24sp"
+        android:textColor="@color/highscore_text"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginBottom="48dp" />
+
+    <Button
+        android:id="@+id/btn_play_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_play_again"
+        android:textSize="28sp"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="16dp"
+        android:backgroundTint="@color/btn_easy" />
+
+</LinearLayout>

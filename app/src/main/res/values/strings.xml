@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">どうぶつあてゲーム</string>
+    <string name="app_title">どうぶつ　あてゲーム</string>
+
+    <!-- Difficulty buttons -->
+    <string name="btn_easy">かんたん（2択）</string>
+    <string name="btn_normal">ふつう（3択）</string>
+    <string name="btn_hard">むずかしい（4択）</string>
+
+    <!-- High score display -->
+    <string name="highscore_none">ハイスコア: -</string>
+    <string name="highscore_format">ハイスコア: %d</string>
+
+    <!-- Game screen -->
+    <string name="label_score">スコア: %d</string>
+    <string name="desc_play">再生</string>
+
+    <!-- Clear screen -->
+    <string name="congratulations">Congratulations!</string>
+    <string name="label_total_score">スコア: %d / 100</string>
+    <string name="new_high_score">★ ハイスコア更新！ ★</string>
+    <string name="btn_play_again">もう一度遊ぶ</string>
+</resources>

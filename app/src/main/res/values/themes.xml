@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AnimalQuiz" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/btn_easy</item>
+        <item name="colorPrimaryDark">@color/header_bg</item>
+        <item name="colorAccent">@color/btn_normal</item>
+        <item name="android:windowBackground">@color/bg_main</item>
+    </style>
+</resources>
