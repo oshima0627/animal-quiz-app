@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Android 15 (API 35) enforces edge-to-edge display for apps that target API 35.
+        This opts out of that enforcement so the existing layout is not obscured by
+        system bars until full inset handling is added.
+    -->
+    <style name="Theme.AnimalQuiz" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/btn_easy</item>
+        <item name="colorPrimaryDark">@color/header_bg</item>
+        <item name="colorAccent">@color/btn_normal</item>
+        <item name="android:windowBackground">@color/bg_main</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+    </style>
+</resources>
