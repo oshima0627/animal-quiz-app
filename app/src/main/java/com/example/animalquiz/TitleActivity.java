@@ -39,9 +39,12 @@ public class TitleActivity extends AppCompatActivity {
         int normal = ScoreManager.getHighScore(this, ScoreManager.DIFFICULTY_NORMAL);
         int hard   = ScoreManager.getHighScore(this, ScoreManager.DIFFICULTY_HARD);
 
-        tvHighScoreEasy.setText(easy   >= 0 ? "ハイスコア: " + easy   : "ハイスコア: -");
-        tvHighScoreNormal.setText(normal >= 0 ? "ハイスコア: " + normal : "ハイスコア: -");
-        tvHighScoreHard.setText(hard   >= 0 ? "ハイスコア: " + hard   : "ハイスコア: -");
+        tvHighScoreEasy.setText(easy   >= 0
+                ? getString(R.string.highscore_format, easy)   : getString(R.string.highscore_none));
+        tvHighScoreNormal.setText(normal >= 0
+                ? getString(R.string.highscore_format, normal) : getString(R.string.highscore_none));
+        tvHighScoreHard.setText(hard   >= 0
+                ? getString(R.string.highscore_format, hard)   : getString(R.string.highscore_none));
     }
 
     private void startGame(int difficulty) {

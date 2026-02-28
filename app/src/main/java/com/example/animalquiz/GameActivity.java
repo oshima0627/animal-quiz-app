@@ -158,7 +158,7 @@ public class GameActivity extends AppCompatActivity {
         Animal correct = questionList.get(currentQuestionIndex);
         attemptCount++;
 
-        if (animal == correct) {
+        if (animal.getName().equals(correct.getName())) {
             handleCorrect();
         } else {
             handleWrong(iv);

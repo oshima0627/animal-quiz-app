@@ -41,8 +41,10 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_play_again"
         android:textSize="28sp"
-        android:paddingHorizontal="32dp"
-        android:paddingVertical="16dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:backgroundTint="@color/btn_easy" />
 
 </LinearLayout>
