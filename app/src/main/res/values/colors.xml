@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App background -->
+    <color name="bg_main">#FFF8E1</color>
+
+    <!-- Header bar -->
+    <color name="header_bg">#FF8F00</color>
+    <color name="header_text">#FFFFFF</color>
+
+    <!-- Text colors -->
+    <color name="title_text">#E65100</color>
+    <color name="animal_name_text">#212121</color>
+    <color name="score_text">#1A237E</color>
+    <color name="highscore_text">#C62828</color>
+
+    <!-- Difficulty buttons -->
+    <color name="btn_easy">#43A047</color>
+    <color name="btn_normal">#FB8C00</color>
+    <color name="btn_hard">#E53935</color>
+</resources>
