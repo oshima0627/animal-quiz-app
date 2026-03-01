@@ -1,6 +1,7 @@
 package com.example.animalquiz;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,22 @@ public class TitleActivity extends AppCompatActivity {
                 v -> startGame(ScoreManager.DIFFICULTY_NORMAL));
         findViewById(R.id.btn_hard).setOnClickListener(
                 v -> startGame(ScoreManager.DIFFICULTY_HARD));
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.activity_title);
+        tvHighScoreEasy   = findViewById(R.id.tv_high_score_easy);
+        tvHighScoreNormal = findViewById(R.id.tv_high_score_normal);
+        tvHighScoreHard   = findViewById(R.id.tv_high_score_hard);
+        findViewById(R.id.btn_easy).setOnClickListener(
+                v -> startGame(ScoreManager.DIFFICULTY_EASY));
+        findViewById(R.id.btn_normal).setOnClickListener(
+                v -> startGame(ScoreManager.DIFFICULTY_NORMAL));
+        findViewById(R.id.btn_hard).setOnClickListener(
+                v -> startGame(ScoreManager.DIFFICULTY_HARD));
+        updateHighScores();
     }
 
     @Override
