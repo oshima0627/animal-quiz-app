@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:background="@color/bg_main">
 
-    <!-- Left panel: title + lion icon -->
+    <!-- 左パネル: ライオン + タイトル -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -13,115 +13,106 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_title"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/title_text"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
 
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/ic_lion"
             android:scaleType="fitCenter"
-            android:contentDescription="ライオン" />
+            android:contentDescription="ライオン"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_title"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/title_text"
+            android:gravity="center" />
 
     </LinearLayout>
 
-    <!-- Right panel: difficulty buttons -->
-    <LinearLayout
+    <!-- 右パネル: 難易度ボタン -->
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp">
+        android:fillViewport="true">
 
-        <!-- かんたん (Easy / 2-choice) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="12dp">
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
+            <!-- かんたん -->
             <Button
                 android:id="@+id/btn_easy"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:text="@string/btn_easy"
-                android:textSize="16sp"
-                android:backgroundTint="@color/btn_easy" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/btn_easy_bg"
+                android:layout_marginBottom="4dp" />
 
             <TextView
                 android:id="@+id/tv_high_score_easy"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:text="@string/highscore_none" />
-        </LinearLayout>
+                android:text="@string/highscore_none"
+                android:textSize="13sp"
+                android:textColor="@color/score_text"
+                android:layout_marginBottom="16dp" />
 
-        <!-- ふつう (Normal / 3-choice) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="12dp">
-
+            <!-- ふつう -->
             <Button
                 android:id="@+id/btn_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:text="@string/btn_normal"
-                android:textSize="16sp"
-                android:backgroundTint="@color/btn_normal" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/btn_normal_bg"
+                android:layout_marginBottom="4dp" />
 
             <TextView
                 android:id="@+id/tv_high_score_normal"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:text="@string/highscore_none" />
-        </LinearLayout>
+                android:text="@string/highscore_none"
+                android:textSize="13sp"
+                android:textColor="@color/score_text"
+                android:layout_marginBottom="16dp" />
 
-        <!-- むずかしい (Hard / 4-choice) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
+            <!-- むずかしい -->
             <Button
                 android:id="@+id/btn_hard"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:text="@string/btn_hard"
-                android:textSize="16sp"
-                android:backgroundTint="@color/btn_hard" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/btn_hard_bg"
+                android:layout_marginBottom="4dp" />
 
             <TextView
                 android:id="@+id/tv_high_score_hard"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:text="@string/highscore_none" />
-        </LinearLayout>
+                android:text="@string/highscore_none"
+                android:textSize="13sp"
+                android:textColor="@color/score_text" />
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

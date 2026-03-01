@@ -4,9 +4,9 @@
     <string name="app_title">どうぶつ　あてゲーム</string>
 
     <!-- Difficulty buttons -->
-    <string name="btn_easy">かんたん（2択）</string>
-    <string name="btn_normal">ふつう（3択）</string>
-    <string name="btn_hard">むずかしい（4択）</string>
+    <string name="btn_easy">★　かんたん</string>
+    <string name="btn_normal">★★　ふつう</string>
+    <string name="btn_hard">★★★　むずかしい</string>
 
     <!-- High score display -->
     <string name="highscore_none">ハイスコア: -</string>
