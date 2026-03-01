@@ -21,8 +21,7 @@
 
         <activity
             android:name=".GameActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
 
         <activity
             android:name=".ClearActivity"
