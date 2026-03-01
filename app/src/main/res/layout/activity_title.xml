@@ -1,100 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp"
-    android:background="@color/bg_main">
+    android:background="@color/bg_main"
+    android:fillViewport="true">
 
-    <!-- App title -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_title"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:textColor="@color/title_text"
-        android:layout_marginBottom="48dp" />
-
-    <!-- かんたん (Easy / 2-choice) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="20dp">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="32dp"
+        android:paddingBottom="32dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp">
 
+        <!-- ライオンアイコン -->
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/ic_lion"
+            android:scaleType="fitCenter"
+            android:contentDescription="ライオン"
+            android:layout_marginBottom="8dp" />
+
+        <!-- タイトル -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_title"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:textColor="@color/title_text"
+            android:gravity="center"
+            android:layout_marginBottom="40dp" />
+
+        <!-- かんたん -->
         <Button
             android:id="@+id/btn_easy"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
             android:text="@string/btn_easy"
-            android:textSize="20sp"
-            android:backgroundTint="@color/btn_easy" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_easy_bg"
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/tv_high_score_easy"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="@string/highscore_none" />
-    </LinearLayout>
+            android:text="@string/highscore_none"
+            android:textSize="15sp"
+            android:textColor="@color/score_text"
+            android:layout_marginBottom="24dp" />
 
-    <!-- ふつう (Normal / 3-choice) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="20dp">
-
+        <!-- ふつう -->
         <Button
             android:id="@+id/btn_normal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
             android:text="@string/btn_normal"
-            android:textSize="20sp"
-            android:backgroundTint="@color/btn_normal" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_normal_bg"
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/tv_high_score_normal"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="@string/highscore_none" />
-    </LinearLayout>
+            android:text="@string/highscore_none"
+            android:textSize="15sp"
+            android:textColor="@color/score_text"
+            android:layout_marginBottom="24dp" />
 
-    <!-- むずかしい (Hard / 4-choice) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
+        <!-- むずかしい -->
         <Button
             android:id="@+id/btn_hard"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
             android:text="@string/btn_hard"
-            android:textSize="20sp"
-            android:backgroundTint="@color/btn_hard" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_hard_bg"
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/tv_high_score_hard"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="@string/highscore_none" />
+            android:text="@string/highscore_none"
+            android:textSize="15sp"
+            android:textColor="@color/score_text" />
+
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
