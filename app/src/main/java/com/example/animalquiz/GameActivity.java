@@ -1,6 +1,7 @@
 package com.example.animalquiz;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.media.MediaPlayer;
@@ -16,7 +17,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -35,6 +38,11 @@ public class GameActivity extends AppCompatActivity {
     private List<Animal> questionList;
     private List<Animal> currentChoices;
     private List<ImageView> choiceViews;
+
+    // State preserved across orientation changes
+    private Set<String> eliminatedChoices = new HashSet<>();
+    private boolean choicesFrozen  = false;
+    private boolean overlayVisible = false;
 
     private MediaPlayer mediaPlayer;
 
@@ -79,8 +87,11 @@ public class GameActivity extends AppCompatActivity {
     // ─── Question loading ───────────────────────────────────────────────────
 
     private void loadQuestion() {
-        attemptCount = 0;
-        choiceViews  = new ArrayList<>();
+        attemptCount     = 0;
+        choiceViews      = new ArrayList<>();
+        eliminatedChoices.clear();
+        choicesFrozen    = false;
+        overlayVisible   = false;
 
         Animal correct = questionList.get(currentQuestionIndex);
 
@@ -137,7 +148,17 @@ public class GameActivity extends AppCompatActivity {
                     iv.setImageResource(animal.getImageResId());
                     iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
                     iv.setBackgroundResource(R.drawable.choice_item_bg);
-                    iv.setOnClickListener(v -> onChoiceClicked(animal, iv));
+                    if (eliminatedChoices.contains(animal.getName())) {
+                        ColorMatrix cm = new ColorMatrix();
+                        cm.setSaturation(0);
+                        iv.setColorFilter(new ColorMatrixColorFilter(cm));
+                        iv.setAlpha(0.4f);
+                        iv.setClickable(false);
+                    } else if (choicesFrozen) {
+                        iv.setClickable(false);
+                    } else {
+                        iv.setOnClickListener(v -> onChoiceClicked(animal, iv));
+                    }
                     choiceViews.add(iv);
                     rowLayout.addView(iv);
                 } else {
@@ -167,6 +188,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void handleCorrect() {
         // Freeze all choices immediately
+        choicesFrozen = true;
         for (ImageView iv : choiceViews) {
             iv.setClickable(false);
         }
@@ -185,6 +207,7 @@ public class GameActivity extends AppCompatActivity {
         playSound(R.raw.sound_correct, () -> {
             Animal correct = questionList.get(currentQuestionIndex);
             ivCorrectAnimal.setImageResource(correct.getImageResId());
+            overlayVisible = true;
             correctOverlay.setVisibility(View.VISIBLE);
 
             // Play animal sound over the overlay
@@ -193,6 +216,7 @@ public class GameActivity extends AppCompatActivity {
             // After the display delay, advance to the next question
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 if (isFinishing() || isDestroyed()) return;
+                overlayVisible = false;
                 correctOverlay.setVisibility(View.GONE);
                 currentQuestionIndex++;
                 if (currentQuestionIndex >= QUESTIONS_PER_GAME) {
@@ -211,6 +235,10 @@ public class GameActivity extends AppCompatActivity {
 
     private void handleWrong(ImageView iv) {
         playSound(R.raw.sound_wrong, null);
+
+        // Track elimination so it can be restored after rotation
+        Animal tapped = currentChoices.get(choiceViews.indexOf(iv));
+        eliminatedChoices.add(tapped.getName());
 
         // Grey out the tapped choice so it can't be re-tapped
         ColorMatrix cm = new ColorMatrix();
@@ -253,6 +281,43 @@ public class GameActivity extends AppCompatActivity {
             if (onComplete != null) {
                 new Handler(Looper.getMainLooper()).post(onComplete);
             }
+        }
+    }
+
+    // ─── Orientation handling ────────────────────────────────────────────────
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Re-inflate the layout for the new orientation and rebind all views
+        setContentView(R.layout.activity_game);
+        tvQuestionNumber = findViewById(R.id.tv_question_number);
+        tvScore          = findViewById(R.id.tv_score);
+        tvAnimalName     = findViewById(R.id.tv_animal_name);
+        btnPlay          = findViewById(R.id.btn_play);
+        choiceContainer  = findViewById(R.id.choice_container);
+        correctOverlay   = findViewById(R.id.correct_overlay);
+        ivCorrectAnimal  = findViewById(R.id.iv_correct_animal);
+
+        btnPlay.setOnClickListener(v -> playAnimalSound());
+
+        // Restore header state
+        Animal correct = questionList.get(currentQuestionIndex);
+        tvQuestionNumber.setText((currentQuestionIndex + 1) + "/" + QUESTIONS_PER_GAME);
+        tvScore.setText(getString(R.string.label_score, currentScore));
+        tvAnimalName.setText(correct.getName());
+
+        // Rebuild choice grid (respects eliminatedChoices and choicesFrozen)
+        setupChoices();
+
+        // Restore button and overlay state
+        if (choicesFrozen) {
+            btnPlay.setEnabled(false);
+        }
+        if (overlayVisible) {
+            ivCorrectAnimal.setImageResource(correct.getImageResId());
+            correctOverlay.setVisibility(View.VISIBLE);
         }
     }
 
