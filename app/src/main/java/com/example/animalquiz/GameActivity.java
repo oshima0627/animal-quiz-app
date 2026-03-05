@@ -43,6 +43,7 @@ public class GameActivity extends AppCompatActivity {
     private Set<String> eliminatedChoices = new HashSet<>();
     private boolean choicesFrozen  = false;
     private boolean overlayVisible = false;
+    private boolean choicesLocked  = false; // true while initial sound is playing
 
     private MediaPlayer mediaPlayer;
 
@@ -92,6 +93,7 @@ public class GameActivity extends AppCompatActivity {
         eliminatedChoices.clear();
         choicesFrozen    = false;
         overlayVisible   = false;
+        choicesLocked    = false;
 
         Animal correct = questionList.get(currentQuestionIndex);
 
@@ -112,11 +114,13 @@ public class GameActivity extends AppCompatActivity {
         Collections.shuffle(currentChoices);
 
         setupChoices();
+        setChoicesLocked(true); // lock until the initial sound finishes
 
         // Auto-play animal sound when the question first appears
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             if (!isFinishing() && !isDestroyed()) {
-                playAnimalSound();
+                Animal current = questionList.get(currentQuestionIndex);
+                playSound(current.getSoundResId(), () -> setChoicesLocked(false));
             }
         }, 300);
     }
@@ -176,6 +180,7 @@ public class GameActivity extends AppCompatActivity {
     // ─── Answer handling ────────────────────────────────────────────────────
 
     private void onChoiceClicked(Animal animal, ImageView iv) {
+        if (choicesLocked) return; // still playing the initial sound
         Animal correct = questionList.get(currentQuestionIndex);
         attemptCount++;
 
@@ -248,6 +253,18 @@ public class GameActivity extends AppCompatActivity {
         iv.setClickable(false);
     }
 
+    // ─── Choice locking ──────────────────────────────────────────────────────
+
+    private void setChoicesLocked(boolean locked) {
+        choicesLocked = locked;
+        for (int i = 0; i < choiceViews.size(); i++) {
+            Animal animal = currentChoices.get(i);
+            if (!eliminatedChoices.contains(animal.getName())) {
+                choiceViews.get(i).setAlpha(locked ? 0.4f : 1.0f);
+            }
+        }
+    }
+
     // ─── Sound playback ─────────────────────────────────────────────────────
 
     private void playAnimalSound() {
@@ -312,6 +329,7 @@ public class GameActivity extends AppCompatActivity {
         setupChoices();
 
         // Restore button and overlay state
+        choicesLocked = false; // sound state is lost on rotation; unlock choices
         if (choicesFrozen) {
             btnPlay.setEnabled(false);
         }
