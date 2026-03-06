@@ -34,14 +34,14 @@ public class Animal {
             new Animal("ひよこ",   R.drawable.ic_chick,    R.raw.chick),
             new Animal("にわとり", R.drawable.ic_chicken,  R.raw.chicken),
             new Animal("うし",     R.drawable.ic_cow,      R.raw.cow),
-            new Animal("からす",   R.drawable.ic_crow,     R.raw.crow),
+            new Animal("からす",   R.drawable.ic_crow,     R.raw.sound_crow),
             new Animal("いぬ",     R.drawable.ic_dog,      R.raw.dog),
             new Animal("ぞう",     R.drawable.ic_elephant, R.raw.elephant),
             new Animal("やぎ",     R.drawable.ic_goat,     R.raw.goat),
             new Animal("うま",     R.drawable.ic_horse,    R.raw.horse),
             new Animal("ライオン", R.drawable.ic_lion,     R.raw.lion),
             new Animal("ひつじ",   R.drawable.ic_sheep,    R.raw.sheep),
-            new Animal("すずめ",   R.drawable.ic_sparrow,  R.raw.sparrow),
+            new Animal("すずめ",   R.drawable.ic_sparrow,  R.raw.sound_sparrow),
             new Animal("おおかみ", R.drawable.ic_wolf,     R.raw.wolf)
         );
     }
